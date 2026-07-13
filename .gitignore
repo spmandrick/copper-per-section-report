@@ -7,6 +7,5 @@ venv/
 
 # raw/processed data stays local, not in git
 data/raw/*
-data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep

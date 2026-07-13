@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-materials = pd.read_csv("../data/processed/materials_detail.csv")
+materials = pd.read_csv("./data/processed/materials_detail.csv")
 
 file_names = materials['Source File'].unique().tolist()
 
