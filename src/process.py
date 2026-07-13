@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-materials = pd.read_csv("./data/processed/materials_detail.csv")
+materials = pd.read_csv("../data/processed/materials_detail.csv")
 
 file_names = materials['Source File'].unique().tolist()
 
@@ -252,7 +252,7 @@ fig.add_trace(go.Bar(
 st.plotly_chart(fig)
 
 #st.write(deltas_df)
-st.write("We can then calculate the delta between what we are charging and what we should be charging, (using our standard markup percentage and the \$20/foot and \$40/foot costs for 2\" and 4\" copper, respectively).")
+st.write("We can then calculate the delta between what we are charging and what we should be charging, (using our standard markup percentage and the 20/foot and 40/foot costs for 2\" and 4\" copper, respectively).")
 
 fig = px.bar(deltas_df, 
     x='Amperage String',
