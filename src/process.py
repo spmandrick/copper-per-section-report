@@ -127,14 +127,20 @@ qty_sold = {
 }
 phasecondcu_gt1section_df['Feet Quoted per Section'] = phasecondcu_gt1section_df['Amperage'].map(qty_sold)
 
-st.write("Below shows the average length of 4\" copper used for each amperage in dark blue, along with the average length assuming 20% scrap in light blue. The red line then represents the quantity of copper we are using to calculate our costs going into our quotes. **The red line should be at or above the light blue line**.")
+st.write("Below shows the average length of 4\" copper used for each amperage in light blue, along with the average length assuming 20% scrap in dark blue. The red line then represents the quantity of copper we are using to calculate our costs going into our quotes. **The red line should be at or above the dark blue line**.")
+
+phase_line_colors = {
+    'Average Feet per Section': "#87CAE0",
+    'Average Feet per Section with 20% Scrap': "#00278B",
+    'Feet Quoted per Section': '#FF0000'}
 
 fig = px.line(
-    phasecondcu_gt1section_df, 
-    x='Amperage', 
-    y=['Average Feet per Section', 'Average Feet per Section with 20% Scrap', 'Feet Quoted per Section'], 
-    title="Average Length of 4\" Copper Used for Boards With More Than 1 Section (with 20% Scrap)", 
-    markers=True)
+    phasecondcu_gt1section_df,
+    x='Amperage',
+    y=['Average Feet per Section', 'Average Feet per Section with 20% Scrap', 'Feet Quoted per Section'],
+    title="Average Length of 4\" Copper Used for Boards With More Than 1 Section (with 20% Scrap)",
+    markers=True,
+    color_discrete_map=phase_line_colors)
 
 fig.update_yaxes(title_text='Feet per Section')
 
@@ -182,14 +188,20 @@ qty_sold = {
 }
 groundcondcu_gt1section_df['Feet Quoted per Section'] = groundcondcu_gt1section_df['Amperage'].map(qty_sold)
 
-st.write("Below shows the average length of 2\" copper used for each amperage in dark blue, along with the average length assuming 20% scrap in light blue. The red line then represents the quantity of copper we are using to calculate our costs going into our quotes. **The red line should be at or above the light blue line**.")
+st.write("Below shows the average length of 2\" copper used for each amperage in light blue, along with the average length assuming 20% scrap in dark blue. The red line then represents the quantity of copper we are using to calculate our costs going into our quotes. **The red line should be at or above the dark blue line**.")
+
+ground_line_colors = {
+    'Average Feet per Section': "#87CAE0",
+    'Average Feet per Section with 20% Scrap': "#00278B",
+    'Feet Quoted per Section': '#FF0000'}
 
 fig = px.line(
-    groundcondcu_gt1section_df, 
-    x='Amperage', 
-    y=['Average Feet per Section', 'Average Feet per Section with 20% Scrap', 'Feet Quoted per Section'], 
-    title="Average Length of 2\" Copper Used for Boards With More Than 1 Section (with 20% Scrap)", 
-    markers=True)
+    groundcondcu_gt1section_df,
+    x='Amperage',
+    y=['Average Feet per Section', 'Average Feet per Section with 20% Scrap', 'Feet Quoted per Section'],
+    title="Average Length of 2\" Copper Used for Boards With More Than 1 Section (with 20% Scrap)",
+    markers=True,
+    color_discrete_map=ground_line_colors)
 
 fig.update_yaxes(title_text='Feet per Section')
 
@@ -201,7 +213,7 @@ st.space(30)
 
 st.subheader("Copper Over/Undercharge Analysis")
 
-st.write("We are now assuming that our 'actual' usage is the *Average Feet per Section with 20% Scrap* data calculated and visualized above in light blue. The above shows that we are undercharging for the phase conductor (4\") copper on 2500a+ boards, and we are overcharging for all other copper. This can be visualized in the below chart.")
+st.write("We are now assuming that our 'actual' usage is the *Average Feet per Section with 20% Scrap* data calculated and visualized above in dark blue. The above shows that we are undercharging for the phase conductor (4\") copper on 2500a+ boards, and we are overcharging for all other copper. This can be visualized in the below chart.")
 
 
 phasecondcu_gt1section_df['Footage Delta'] = phasecondcu_gt1section_df['Feet Quoted per Section'] - phasecondcu_gt1section_df['Average Feet per Section with 20% Scrap']
